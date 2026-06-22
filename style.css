@@ -1,0 +1,1263 @@
+/* ==========================================================================
+   MAKANKUY - STYLESHEET
+   Warna utama : Orange (#FF6B35)
+   Warna sekunder : Putih
+   ========================================================================== */
+
+:root {
+  --primary: #FF6B35;
+  --primary-dark: #e2551f;
+  --secondary: #ffffff;
+  --dark: #2b2b2b;
+  --gray: #6b6b6b;
+  --light-bg: #f7f7f9;
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--dark);
+  line-height: 1.6;
+  background: var(--secondary);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 1000;
+  transition: var(--transition);
+  backdrop-filter: blur(6px);
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  position: relative;
+  transition: var(--transition);
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   HERO / SWIPER
+   ========================================================================== */
+.hero {
+  margin-top: 72px; /* offset for fixed navbar */
+}
+
+.heroSwiper {
+  width: 100%;
+  height: 100vh;
+}
+
+.heroSwiper .swiper-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.heroSwiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+
+.slide-content {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-50%);
+  max-width: 560px;
+  color: #fff;
+}
+
+.slide-content h1 {
+  font-size: 2.6rem;
+  margin-bottom: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.slide-content p {
+  font-size: 1.05rem;
+  margin-bottom: 22px;
+  opacity: 0.95;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Swiper navigation/pagination color tweaks */
+.heroSwiper .swiper-button-next,
+.heroSwiper .swiper-button-prev {
+  color: #fff;
+}
+
+.heroSwiper .swiper-pagination-bullet-active {
+  background: var(--primary);
+}
+
+/* ==========================================================================
+   SECTION GENERAL
+   ========================================================================== */
+.section {
+  padding: 70px 0;
+}
+
+.alt-bg {
+  background: var(--light-bg);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.section-title.left {
+  text-align: left;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 40px;
+}
+
+/* fade-in animation on scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   FILTER BAR
+   ========================================================================== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: var(--light-bg);
+  border: 1px solid #e4e4e4;
+  border-radius: 50px;
+  padding: 10px 20px;
+  gap: 10px;
+  flex: 1;
+  max-width: 360px;
+}
+
+.search-box i {
+  color: var(--primary);
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.category-select {
+  border: 1px solid #e4e4e4;
+  border-radius: 50px;
+  padding: 10px 20px;
+  background: var(--light-bg);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--dark);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   RESTAURANT GRID & CARD
+   ========================================================================== */
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+}
+
+.card-img-wrap {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card-img-wrap img {
+  transform: scale(1.08);
+}
+
+.card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.card-category {
+  display: inline-block;
+  background: rgba(255, 107, 53, 0.12);
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  width: fit-content;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.card-rating {
+  color: #f5a623;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.card-rating span {
+  color: var(--gray);
+  font-weight: 400;
+}
+
+.card-address {
+  font-size: 0.88rem;
+  color: var(--gray);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.card-address i {
+  color: var(--primary);
+  margin-top: 3px;
+}
+
+.card-menu-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.card-menu-list {
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--gray);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.card-menu-list li {
+  background: var(--light-bg);
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+
+/* Owner & Description */
+.card-owner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.card-owner i {
+  font-size: 0.8rem;
+}
+
+.card-description {
+  font-size: 0.83rem;
+  color: var(--gray);
+  line-height: 1.5;
+  border-left: 3px solid var(--primary);
+  padding-left: 10px;
+  margin: 2px 0;
+}
+
+/* Menu + Harga list */
+.card-menu-price-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.card-menu-price-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card-menu-price-list::-webkit-scrollbar-track {
+  background: var(--light-bg);
+  border-radius: 10px;
+}
+
+.card-menu-price-list::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+.menu-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--light-bg);
+  padding: 5px 10px;
+  border-radius: 8px;
+  gap: 8px;
+}
+
+.menu-item-name {
+  font-size: 0.82rem;
+  color: var(--dark);
+  flex: 1;
+}
+
+.menu-item-price {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.btn-action {
+  flex: 1;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 10px 8px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-gofood {
+  background: #00aa13;
+  color: #fff;
+}
+
+.btn-gofood:hover {
+  background: #008c10;
+}
+
+.btn-shopeefood {
+  background: #ee4d2d;
+  color: #fff;
+}
+
+.btn-shopeefood:hover {
+  background: #d6431f;
+}
+
+.btn-location {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-location:hover {
+  background: var(--primary-dark);
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--gray);
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   MAP SECTION
+   ========================================================================== */
+#leafletMap {
+  width: 100%;
+  height: 450px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  z-index: 1;
+}
+ 
+.map-wrapper {
+  position: relative;
+}
+ 
+.map-layer-control {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 500;
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  padding: 6px;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+}
+ 
+.layer-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+.layer-btn.active,
+.layer-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+ 
+.leaflet-popup-content b {
+  color: var(--primary);
+}
+ 
+.popup-detail-btn {
+  display: inline-block;
+  margin-top: 6px;
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+/* ==========================================================================
+   ABOUT SECTION (Tentang MakanKuy)
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+  margin-bottom: 70px;
+}
+
+.about-text p {
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+
+.vision-mission {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.vm-box {
+  background: var(--light-bg);
+  padding: 20px;
+  border-radius: var(--radius);
+  text-align: left;
+  transition: var(--transition);
+}
+
+.vm-box:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.vm-box i {
+  font-size: 1.6rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.vm-box h4 {
+  margin-bottom: 8px;
+}
+
+.vm-box p {
+  font-size: 0.88rem;
+  color: var(--gray);
+}
+
+.about-services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.service-card {
+  background: var(--secondary);
+  border: 1px solid #eee;
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.service-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-6px);
+  border-color: var(--primary);
+}
+
+.service-card i {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.service-card h4 {
+  margin-bottom: 8px;
+}
+
+.service-card p {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* ==========================================================================
+   TIM PENGEMBANG (di bawah About, 4 slot kartu)
+   ========================================================================== */
+.team-wrapper {
+  border-top: 1px solid #eee;
+  padding-top: 60px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.team-card {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  padding: 30px 22px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid #eee;
+  transition: var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.14);
+  border-color: var(--primary);
+}
+
+/* Ketua tim: card lebih menonjol */
+.team-card.leader {
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 0 6px rgba(255, 107, 53, 0.08), var(--shadow);
+  transform: scale(1.04);
+  padding: 36px 22px;
+}
+
+.team-card.leader:hover {
+  transform: scale(1.04) translateY(-8px);
+}
+
+.leader-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 6px 18px;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.team-photo-wrap {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 14px auto 16px;
+  border: 4px solid var(--light-bg);
+  box-shadow: var(--shadow);
+}
+
+.team-card.leader .team-photo-wrap {
+  width: 130px;
+  height: 130px;
+  border-color: rgba(255, 107, 53, 0.15);
+}
+
+.team-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-photo {
+  transform: scale(1.12);
+}
+
+/* Placeholder ditampilkan saat foto belum diisi */
+.team-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--light-bg);
+  color: #c9c9c9;
+  font-size: 2.4rem;
+  transition: var(--transition);
+}
+
+.team-card:hover .team-photo-placeholder {
+  color: var(--primary);
+  transform: scale(1.08);
+}
+
+.team-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.team-nim {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+
+.team-role {
+  display: inline-block;
+  background: rgba(255, 107, 53, 0.12);
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+
+.team-desc {
+  font-size: 0.88rem;
+  color: var(--gray);
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.team-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.social-tooltip {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--light-bg);
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.social-tooltip:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+/* Tooltip muncul saat hover */
+.social-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--dark);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.social-tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  background: var(--dark);
+  color: #ddd;
+  padding-top: 60px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-logo {
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.footer-col h4 {
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.footer-col p {
+  font-size: 0.9rem;
+  color: #bbb;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 14px;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.social-icons a:hover {
+  background: var(--primary);
+  transform: translateY(-4px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  padding: 18px 0;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* ==========================================================================
+   SCROLL TO TOP BUTTON
+   ========================================================================== */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  z-index: 999;
+  transition: var(--transition);
+}
+
+#scrollTopBtn:hover {
+  background: var(--primary-dark);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-card.leader {
+    grid-column: span 2;
+    transform: scale(1);
+  }
+
+  .team-card.leader:hover {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .nav-menu.open {
+    max-height: 320px;
+  }
+
+  .nav-menu .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 14px 0;
+  }
+
+  .slide-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .slide-content p {
+    font-size: 0.95rem;
+  }
+
+  .vision-mission,
+  .about-services {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-col p,
+  .social-icons {
+    justify-content: center;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-card.leader {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-actions {
+    flex-direction: column;
+  }
+}
+/* =========================================================
+   MODAL DETAIL RESTORAN
+   ========================================================= */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: modalFadeIn 0.25s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-box {
+  background: var(--white);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  animation: modalSlideUp 0.28s ease;
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modal-box::-webkit-scrollbar { width: 5px; }
+.modal-box::-webkit-scrollbar-track { background: var(--light-bg); }
+.modal-box::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.modal-close:hover { background: var(--primary); }
+
+.modal-img-wrap {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-content {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 4px 0 2px;
+}
+
+.modal-section {
+  background: var(--light-bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 4px;
+}
+
+.modal-section-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modal-desc-text {
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* Daftar menu di modal */
+.modal-menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--white);
+  padding: 8px 12px;
+  border-radius: 8px;
+  gap: 10px;
+}
+
+.modal-menu-name {
+  font-size: 0.85rem;
+  color: var(--dark);
+  flex: 1;
+}
+
+.modal-menu-price {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+/* Tombol aksi di modal */
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.modal-actions .btn-action {
+  flex: 1;
+}
+
+/* Tombol Detail & Menu di card */
+.btn-detail {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.btn-detail:hover {
+  background: var(--primary-dark, #e05a20);
+}
+
+/* Jam Operasional */
+.card-operasional {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #2e7d32;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.card-operasional i {
+  color: #2e7d32;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+/* Nomor Telepon */
+.card-phone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #555;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+ 
+.card-phone i {
+  color: #25D366;
+  flex-shrink: 0;
+}
+ 
+.card-phone a {
+  color: #25D366;
+  text-decoration: none;
+  font-weight: 500;
+}
+ 
+.card-phone a:hover {
+  text-decoration: underline;
+}
