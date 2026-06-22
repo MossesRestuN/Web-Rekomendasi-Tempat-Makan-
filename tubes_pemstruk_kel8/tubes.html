@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MakanKuy - Rekomendasi Tempat Makan</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Swiper.js CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="logo"><i class="fa-solid fa-utensils"></i> MakanKuy</a>
+
+    <!-- Hamburger for mobile -->
+    <div class="hamburger" id="hamburger">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home" class="nav-link active">Beranda</a>
+      <a href="#restaurants" class="nav-link">Tempat Makan</a>
+      <a href="#map" class="nav-link">Peta Lokasi</a>
+      <a href="#about" class="nav-link">Tentang Kami</a>
+      <a href="#contact" class="nav-link">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO / CAROUSEL ===================== -->
+<section id="home" class="hero">
+  <div class="swiper heroSwiper">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80" alt="Slide 1">
+        <div class="slide-content">
+          <h1>Promo Spesial Akhir Pekan!</h1>
+          <p>Diskon hingga 50% untuk berbagai menu favorit di restoran pilihan kamu.</p>
+          <a href="#restaurants" class="btn-primary">Jelajahi Sekarang</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1600&q=80" alt="Slide 2">
+        <div class="slide-content">
+          <h1>Kuliner Nusantara Terbaik</h1>
+          <p>Temukan ragam cita rasa autentik Indonesia dari berbagai daerah.</p>
+          <a href="#restaurants" class="btn-primary">Jelajahi Sekarang</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80" alt="Slide 3">
+        <div class="slide-content">
+          <h1>Pesan Gampang, Cepat Sampai</h1>
+          <p>Integrasi langsung dengan GoFood & ShopeeFood untuk kemudahan kamu.</p>
+          <a href="#restaurants" class="btn-primary">Jelajahi Sekarang</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Navigation arrows -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+<!-- ===================== RESTAURANT RECOMMENDATION ===================== -->
+<section id="restaurants" class="restaurants section">
+  <div class="container">
+    <h2 class="section-title">Rekomendasi Tempat Makan</h2>
+    <p class="section-subtitle">Temukan tempat makan favoritmu di sekitar kamu</p>
+
+    <!-- Search & Filter -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Cari nama tempat makan...">
+      </div>
+      <select id="categoryFilter" class="category-select">
+        <option value="all">Semua Kategori</option>
+      </select>
+    </div>
+
+    <!-- Card Grid -->
+    <div class="restaurant-grid" id="restaurantGrid">
+      <!-- Cards akan digenerate oleh JavaScript -->
+    </div>
+
+    <p id="emptyMessage" class="empty-message" style="display:none;">
+      Tidak ada tempat makan yang ditemukan.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== MAP SECTION ===================== -->
+<section id="map" class="map-section section alt-bg">
+  <div class="container">
+    <h2 class="section-title">Peta Lokasi</h2>
+    <p class="section-subtitle">Lihat lokasi tempat makan di sekitar kamu</p>
+    <div class="map-wrapper">
+      <div id="leafletMap"></div>
+ 
+      <!-- Switch tampilan peta -->
+      <div class="map-layer-control">
+        <button class="layer-btn active" data-layer="street">
+          <i class="fa-solid fa-road"></i> Peta
+        </button>
+        <button class="layer-btn" data-layer="satellite">
+          <i class="fa-solid fa-satellite"></i> Satelit
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT US & TIM PENGEMBANG ===================== -->
+<section id="about" class="about section">
+  <div class="container">
+
+    <!-- A. Tentang MakanKuy -->
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title left">Tentang MakanKuy</h2>
+        <p>
+          MakanKuy adalah platform rekomendasi tempat makan sekitaran ITK yang membantu kamu khusunya mahasiswa ITK untuk
+          menemukan kuliner terbaik di sekitar lokasi kamu. Mulai dari warung
+          tradisional, kafe kekinian, hingga restoran keluarga, semua ada di sini
+          dengan informasi lengkap mulai dari menu, rating, hingga lokasi.
+        </p>
+
+        <div class="vision-mission">
+          <div class="vm-box">
+            <i class="fa-solid fa-eye"></i>
+            <h4>Visi</h4>
+            <p>Menjadi platform kuliner terpercaya yang menghubungkan mahasiswa dan masyarakat dengan tempat makan favorit mereka.</p>
+          </div>
+          <div class="vm-box">
+            <i class="fa-solid fa-bullseye"></i>
+            <h4>Misi</h4>
+            <p>Memberikan informasi kuliner yang akurat, mudah diakses, serta mendukung pelaku usaha lokal.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-services">
+        <div class="service-card">
+          <i class="fa-solid fa-magnifying-glass-location"></i>
+          <h4>Cari Tempat Makan</h4>
+          <p>Temukan tempat makan terdekat dengan mudah dan cepat.</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-star"></i>
+          <h4>Rating & Ulasan</h4>
+          <p>Lihat rating dari pengunjung sebelum menentukan pilihan.</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-motorcycle"></i>
+          <h4>Pesan Online</h4>
+          <p>Langsung pesan lewat GoFood atau ShopeeFood favoritmu.</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <h4>Navigasi Lokasi</h4>
+          <p>Petunjuk arah langsung menuju tempat makan pilihanmu.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- B. Tim Pengembang -->
+    <div class="team-wrapper">
+      <h2 class="section-title">Tim Pengembang</h2>
+      <p class="section-subtitle">Dikenalkan oleh tim di balik MakanKuy</p>
+
+      <div class="team-grid" id="teamGrid">
+        <!-- 4 slot kartu tim digenerate dari js/data.js (identitas masih kosong) -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="contact" class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <a href="#home" class="logo footer-logo"><i class="fa-solid fa-utensils"></i> MakanKuy</a>
+      <p>Platform rekomendasi tempat makan terbaik untuk menemani makan siang kamu.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Alamat & Kontak</h4>
+      <p><i class="fa-solid fa-location-dot"></i> Jl. Soekarno-Hatta Km.15, Kelurahan Karang Joang, Kecamatan Balikpapan Utara, Kota Balikpapan, Kalimantan Timur </p>
+      <p><i class="fa-solid fa-envelope"></i> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@makankuy.id" target="_blank">hello@makankuy.id</a></p>
+      <p><i class="fa-solid fa-phone"></i> <a href="https://wa.me/6287721121463" target="_blank">+62 877-2112-1463</a></p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Ikuti Kami</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 MakanKuy. Dibuat Oleh Mahasiswa Sistem Informasi ITK. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Scroll to top button -->
+<button id="scrollTopBtn" title="Kembali ke atas"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ===================== MODAL DETAIL RESTORAN ===================== -->
+<div id="detailModal" class="modal-overlay">
+  <div class="modal-box">
+    <!-- Tombol tutup -->
+    <button class="modal-close" onclick="closeDetailModal()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Gambar header -->
+    <div class="modal-img-wrap">
+      <img id="modalImage" src="" alt="">
+    </div>
+
+    <!-- Konten modal -->
+    <div class="modal-content">
+      <span id="modalCategory" class="card-category"></span>
+      <h2 id="modalName" class="modal-name"></h2>
+      <div id="modalOwner" class="card-owner" style="margin-bottom:4px;"></div>
+      <div id="modalRating" class="card-rating"></div>
+      <div id="modalAddress" class="card-address" style="margin-bottom:8px;"></div>
+
+      <!-- Deskripsi -->
+      <div class="modal-section">
+        <h4 class="modal-section-title"><i class="fa-solid fa-quote-left"></i> Tentang Warung</h4>
+        <p id="modalDesc" class="modal-desc-text"></p>
+      </div>
+
+      <!-- Menu & Harga -->
+      <div class="modal-section">
+        <h4 class="modal-section-title"><i class="fa-solid fa-utensils"></i> Menu & Harga</h4>
+        <ul id="modalMenuList" class="modal-menu-list"></ul>
+      </div>
+
+      <!-- Aksi -->
+      <div class="modal-actions">
+        <a id="modalGofood" href="#" target="_blank" class="btn-action btn-gofood">
+          <i class="fa-solid fa-bowl-food"></i> GoFood
+        </a>
+        <a id="modalShopeefood" href="#" target="_blank" class="btn-action btn-shopeefood">
+          <i class="fa-solid fa-bag-shopping"></i> ShopeeFood
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- App Data & Logic -->
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
